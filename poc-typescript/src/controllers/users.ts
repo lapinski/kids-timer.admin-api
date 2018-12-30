@@ -6,9 +6,9 @@ import { User, UserCreationRequest } from '../models/user';
 @Route('Users')
 export class UsersController extends Controller {
 
-    private _userService:UserService;
+    private _userService: UserService;
 
-    constructor(userService:UserService) {
+    constructor(userService: UserService) {
         super();
         this._userService = userService;
     }
@@ -25,4 +25,4 @@ export class UsersController extends Controller {
         this.setStatus(HttpStatus.CREATED);
         return Promise.resolve();
     }
-};
+}

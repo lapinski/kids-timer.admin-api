@@ -1,0 +1,18 @@
+{
+  "swagger": {
+    "outputDirectory": "./dist",
+    "entryFile": "./src/app.ts",
+    "host": "localhost:3000",
+    "basePath": "/v1",
+    "yaml": true
+  },
+  "routes": {
+    "basePath": "/v1",
+    "entryFile": "./src/app.ts",
+    "routesDir": "./src/routes",
+    "middleware": "express"
+  },
+  "ignore": [
+    "**/node_modules/**"
+  ]
+}

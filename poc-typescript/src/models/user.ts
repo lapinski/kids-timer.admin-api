@@ -3,10 +3,10 @@ export interface User {
     email: string;
     firstName: string;
     lastName: string;
-};
+}
 
 export class UserCreationRequest {
     firstName: string;
     lastName: string;
     email: string;
-};
+}

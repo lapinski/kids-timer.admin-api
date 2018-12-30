@@ -5,18 +5,8 @@
         <package-json value="$PROJECT_DIR$/package.json" />
         <command value="run" />
         <scripts>
-          <script value="build-ts" />
+          <script value="build" />
         </scripts>
-        <node-interpreter value="project" />
-        <envs />
-      </option>
-      <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/package.json" />
-        <command value="run" />
-        <scripts>
-          <script value="lint-ts" />
-        </scripts>
-        <arguments value="-- --fix --format codeFrame" />
         <node-interpreter value="project" />
         <envs />
       </option>
