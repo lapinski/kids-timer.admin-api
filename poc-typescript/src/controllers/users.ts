@@ -2,13 +2,18 @@ import { Get, Post, Route, Body, Query, SuccessResponse, Controller } from 'tsoa
 import HttpStatus from 'http-status-codes';
 import { UserService } from '../services/user-service';
 import { User, UserCreationRequest } from '../models/user';
+import { ProvideSingleton, Inject } from '../ioc';
 
 @Route('Users')
+@ProvideSingleton(UsersController)
 export class UsersController extends Controller {
 
     private _userService: UserService;
 
-    constructor(userService: UserService) {
+    constructor(
+        @Inject(UserService)
+        userService: UserService
+    ) {
         super();
         this._userService = userService;
     }

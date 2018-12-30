@@ -1,16 +1,16 @@
 {
   "swagger": {
-    "outputDirectory": "./dist",
+    "outputDirectory": "./dist/public",
     "entryFile": "./src/app.ts",
     "host": "localhost:3000",
-    "basePath": "/v1",
-    "yaml": true
+    "basePath": "/v1"
   },
   "routes": {
     "basePath": "/v1",
     "entryFile": "./src/app.ts",
     "routesDir": "./src/routes",
-    "middleware": "express"
+    "middleware": "express",
+    "iocModule": "./src/ioc"
   },
   "ignore": [
     "**/node_modules/**"

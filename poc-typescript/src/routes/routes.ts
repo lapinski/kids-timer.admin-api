@@ -1,5 +1,6 @@
 /* tslint:disable */
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { iocContainer } from './../ioc';
 import { UsersController } from './../controllers/users';
 import * as express from 'express';
 
@@ -37,7 +38,10 @@ export function RegisterRoutes(app: express.Express) {
                 return next(err);
             }
 
-            const controller = new UsersController();
+            const controller = iocContainer.get<UsersController>(UsersController);
+            if (typeof controller['setStatus'] === 'function') {
+                (<any>controller).setStatus(undefined);
+            }
 
 
             const promise = controller.getUser.apply(controller, validatedArgs as any);
@@ -56,7 +60,10 @@ export function RegisterRoutes(app: express.Express) {
                 return next(err);
             }
 
-            const controller = new UsersController();
+            const controller = iocContainer.get<UsersController>(UsersController);
+            if (typeof controller['setStatus'] === 'function') {
+                (<any>controller).setStatus(undefined);
+            }
 
 
             const promise = controller.createUser.apply(controller, validatedArgs as any);
