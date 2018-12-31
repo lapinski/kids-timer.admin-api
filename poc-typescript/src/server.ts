@@ -9,8 +9,6 @@ app.set('env', serverConfig.env);
 app.set('port', serverConfig.port);
 app.set('host', serverConfig.ip);
 
-console.log(`PORT: ${app.get('port')}`);
-
 /**
  * Error Handler. Provides full stack - remove for production
  */
@@ -20,12 +18,12 @@ if (serverConfig.env !== ServerEnvironment.Production ) {
 
 const server = app.listen(app.get('port'), app.get('host'), () => {
     console.log(
-        '  App is running at http://%s:%d in %s mode',
+        '\tApp is running at http://%s:%d in %s mode',
         app.get('host'),
         app.get('port'),
         app.get('env')
     );
-    console.log('  Press CTRL-C to stop\n');
+    console.log('\tPress CTRL-C to stop\n');
 });
 
 export default server;

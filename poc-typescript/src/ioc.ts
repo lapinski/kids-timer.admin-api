@@ -1,6 +1,9 @@
 import 'reflect-metadata';
 import { Container, inject, interfaces } from 'inversify';
 import { autoProvide, provide, fluentProvide } from 'inversify-binding-decorators';
+import { Repository } from 'typeorm';
+import { createConnection, getRepository } from './database';
+import { User } from './entities/user';
 
 const iocContainer = new Container();
 
