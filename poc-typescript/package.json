@@ -5,6 +5,10 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run serve",
+    "db": "typeorm",
+    "db:migrate": "typeorm migration:run",
+    "clean": "rm -rf dist/ yarn-error.log",
+    "prebuild": "npm run clean",
     "build": "npm run build-routes && npm run build-ts && npm run build-swagger && npm run lint",
     "serve": "node dist/server.js",
     "test": "echo 'TODO'",
