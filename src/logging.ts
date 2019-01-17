@@ -7,7 +7,8 @@ import { getLoggingConfig } from './config';
 const loggingConfig = getLoggingConfig();
 
 const addTransport = (transport: Transport) => logger.add(transport);
-const getFileTransport = (filename: string, format: Format) => new transports.File({ filename, format });
+const getFileTransport = (filename: string, format: Format) =>
+  new transports.File({ filename, format });
 const getConsoleTransport = (format: Format) => new transports.Console({ format });
 const getConsoleFormat = () => format.combine(format.colorize(), format.simple());
 

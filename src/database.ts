@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import path from 'path';
 import * as typeorm from 'typeorm';
 
-import config from './config';
-import logging from './logging';
+import { getDatabaseConfig } from './config';
+import { logger } from './logging';
 
-const dbConfig = config.get('db');
+const dbConfig = getDatabaseConfig();
 
 export async function createConnection() {
 
@@ -30,7 +30,7 @@ export async function getRepository<T>(
   try {
     connection = await createConnection();
   } catch (error) {
-    logging.error('An error occurred creating a connection to get a repository.', {
+    logger.error('An error occurred creating a connection to get a repository.', {
       error,
       entityDefinition,
     });
