@@ -1,3 +1,6 @@
+# Typescript
+dist/
+
 # .env files
 .env
 .env.*
