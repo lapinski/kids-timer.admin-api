@@ -7,19 +7,19 @@ import { User } from './entities/user';
 
 const iocContainer = new Container();
 
-const ProvideNamed = function(
+const ProvideNamed = function (
     identifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>,
-    name: string
+    name: string,
 ) {
-    return fluentProvide(identifier)
+  return fluentProvide(identifier)
         .whenTargetNamed(name)
         .done();
 };
 
-const ProvideSingleton = function(
-    identifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>
+const ProvideSingleton = function (
+    identifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>,
 ) {
-    return fluentProvide(identifier)
+  return fluentProvide(identifier)
         .inSingletonScope()
         .done();
 };

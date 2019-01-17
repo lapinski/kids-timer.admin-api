@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import methodOverride from 'method-override';
 import path from 'path';
-import swaggerUi from 'swagger-ui-express';
+import swaggerUiExpress from 'swagger-ui-express';
 
 import './controllers/users';
 import { RegisterRoutes } from './routes/routes';
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(methodOverride());
 
 const swaggerOptions = {
-    swaggerUrl: '/static/swagger.json'
+  swaggerUrl: '/static/swagger.json',
 };
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(undefined, swaggerOptions));

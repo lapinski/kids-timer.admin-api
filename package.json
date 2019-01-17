@@ -16,8 +16,7 @@
     "watch-ts": "tsc -w",
     "build-swagger": "tsoa swagger",
     "build-routes": "tsoa routes",
-    "lint": "npm run lint-ts",
-    "lint-ts": "tslint -c tslint.json -p tsconfig.json --fix --format codeFrame",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
     "pretypeorm": "npm run build",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm -f src/ormconfig.ts"
   },
@@ -52,6 +51,7 @@
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",
     "tslint": "^5.12.0",
+    "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.2.2"
   }
 }

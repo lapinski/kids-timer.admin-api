@@ -4,15 +4,15 @@ import { User as IUser } from '../models/user';
 @Entity()
 export class User implements IUser {
 
-    @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+  @Column()
     firstName: string;
 
-    @Column()
+  @Column()
     lastName: string;
 
-    @Column()
+  @Column()
     email: string;
 }
