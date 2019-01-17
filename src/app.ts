@@ -17,7 +17,11 @@ const swaggerOptions = {
   swaggerUrl: '/static/swagger.json',
 };
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(undefined, swaggerOptions));
+app.use(
+  '/docs',
+  swaggerUiExpress.serve,
+  swaggerUiExpress.setup(undefined, swaggerOptions),
+);
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 RegisterRoutes(app);

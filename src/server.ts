@@ -13,7 +13,7 @@ app.set('host', serverConfig.ip);
  * Error Handler. Provides full stack - remove for production
  */
 if (serverConfig.env !== ServerEnvironment.Production) {
-  app.use(errorHandler());
+  app.use(errorhandler());
 }
 
 const server = app.listen(app.get('port'), app.get('host'), () => {

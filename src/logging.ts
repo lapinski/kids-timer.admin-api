@@ -7,11 +7,11 @@ const loggingConfig = config.get('logging');
 const logger = winston.createLogger({
   level: loggingConfig.level,
   transports: [
-      new transports.File({
-          filename: loggingConfig.filename,
-          format: format.json(),
-        }),
-    ],
+    new transports.File({
+      filename: loggingConfig.filename,
+      format: format.json(),
+    }),
+  ],
 });
 
 if (config.get('server.env') !== ServerEnvironment.Production) {

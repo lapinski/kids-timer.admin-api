@@ -1,6 +1,13 @@
 {
   "extends": "tslint-config-airbnb",
   "linterOptions": {
-    "format": "codeFrame"
+    "format": "codeFrame",
+    "exclude": [
+      "node_modules/",
+      "src/routes/*.ts"
+    ]
+  },
+  "rules": {
+    "variable-name": ["check-format", "allow-leading-underscore"]
   }
 }

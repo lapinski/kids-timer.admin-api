@@ -1,13 +1,10 @@
 import 'reflect-metadata';
 import { Container, inject, interfaces } from 'inversify';
 import { autoProvide, provide, fluentProvide } from 'inversify-binding-decorators';
-import { Repository } from 'typeorm';
-import { createConnection, getRepository } from './database';
-import { User } from './entities/user';
 
 const iocContainer = new Container();
 
-const ProvideNamed = function (
+const provideNamed = function (
     identifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>,
     name: string,
 ) {
@@ -16,7 +13,7 @@ const ProvideNamed = function (
         .done();
 };
 
-const ProvideSingleton = function (
+const provideSingleton = function (
     identifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>,
 ) {
   return fluentProvide(identifier)
@@ -24,14 +21,11 @@ const ProvideSingleton = function (
         .done();
 };
 
-const Provide = provide;
-const Inject = inject;
-
 export {
     iocContainer,
     autoProvide,
-    Provide,
-    ProvideSingleton,
-    ProvideNamed,
-    Inject,
+    provide,
+    provideSingleton,
+    provideNamed,
+    inject,
 };

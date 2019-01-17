@@ -12,16 +12,16 @@ const ormconfig = {
   database: dbConfig.databaseName,
   logging: dbConfig.enableLogging,
   entities: [
-      path.join(__dirname, 'entities', '**', '*.ts'),
-    ],
+    path.join(__dirname, 'entities', '**', '*.ts'),
+  ],
   migrations: [
-      path.join(__dirname, 'migrations', '**', '*.ts'),
-    ],
+    path.join(__dirname, 'migrations', '**', '*.ts'),
+  ],
   cli: {
-      entitiesDir: 'src/entities',
-      migrationsDir: 'src/migrations',
-      subscribersDir: 'src/subscribers',
-    },
+    entitiesDir: 'src/entities',
+    migrationsDir: 'src/migrations',
+    subscribersDir: 'src/subscribers',
+  },
 };
 
 console.log('ORMConfig');
