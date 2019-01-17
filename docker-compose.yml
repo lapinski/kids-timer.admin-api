@@ -3,7 +3,7 @@ services:
   db:
     image: postgres:alpine
     ports:
-      - "5432:5432"
+      - "5533:5432"
     # TODO: Add 'data' parameter to store db database locally
     environment:
       POSTGRES_USER: dbuser

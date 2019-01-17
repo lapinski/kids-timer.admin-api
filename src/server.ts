@@ -1,9 +1,10 @@
 import errorhandler from 'errorhandler';
 
 import app from './app';
-import config, { ServerEnvironment } from './config';
+import { getServerConfig, ServerEnvironment } from './config';
+import { addTransport, getConsoleTransport, getConsoleFormat } from './logging';
 
-const serverConfig = config.get('server');
+const serverConfig = getServerConfig();
 
 app.set('env', serverConfig.env);
 app.set('port', serverConfig.port);
@@ -14,6 +15,7 @@ app.set('host', serverConfig.ip);
  */
 if (serverConfig.env !== ServerEnvironment.Production) {
   app.use(errorhandler());
+  addTransport(getConsoleTransport(getConsoleFormat()));
 }
 
 const server = app.listen(app.get('port'), app.get('host'), () => {

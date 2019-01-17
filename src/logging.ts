@@ -1,28 +1,27 @@
+import { Format } from 'logform';
+import * as Transport from 'winston-transport';
 import winston, { format, transports } from 'winston';
 
-import config, { ServerEnvironment } from './config';
+import { getLoggingConfig } from './config';
 
-const loggingConfig = config.get('logging');
+const loggingConfig = getLoggingConfig();
+
+const addTransport = (transport: Transport) => logger.add(transport);
+const getFileTransport = (filename: string, format: Format) => new transports.File({ filename, format });
+const getConsoleTransport = (format: Format) => new transports.Console({ format });
+const getConsoleFormat = () => format.combine(format.colorize(), format.simple());
 
 const logger = winston.createLogger({
   level: loggingConfig.level,
   transports: [
-    new transports.File({
-      filename: loggingConfig.filename,
-      format: format.json(),
-    }),
+    getFileTransport(loggingConfig.filename, format.json()),
   ],
 });
 
-if (config.get('server.env') !== ServerEnvironment.Production) {
-  logger.add(
-        new transports.Console({
-          format: format.combine(
-                format.colorize(),
-                format.simple(),
-            ),
-        }),
-    );
-}
-
-export default logger;
+export {
+  logger,
+  addTransport,
+  getFileTransport,
+  getConsoleFormat,
+  getConsoleTransport,
+};

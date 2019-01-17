@@ -1,13 +1,13 @@
 import convict from 'convict';
 import * as dotenv from 'dotenv';
 
-export enum ServerEnvironment {
+enum ServerEnvironment {
     Production = 'production',
     Development = 'development',
     Test = 'test',
 }
 
-export enum DatabaseEngine {
+enum DatabaseEngine {
     Mysql = 'mysql',
     Postgres = 'postgres',
     MariaDb = 'mariadb',
@@ -22,16 +22,112 @@ export enum DatabaseEngine {
     Expo = 'expo',
 }
 
-export enum LoggingLevel {
+enum LoggingLevel {
     Info = 'info',
     Debug = 'debug',
     Warn = 'warn',
     Error = 'error',
 }
 
-dotenv.config();
+enum ConfigSection {
+  Database = 'db',
+  Logging = 'logging',
+  Server = 'server',
+}
 
+interface DatabaseConfig {
+  type: DatabaseEngine;
+  host: string;
+  port: number;
+  username: string;
+  password: string;
+  databaseName: string;
+  enableLogging: boolean;
+  enableSync: boolean;
+}
+
+interface LoggingConfig {
+  level: LoggingLevel;
+  filename: string;
+}
+
+interface ServerConfig {
+  env: ServerEnvironment;
+  port: number;
+  ip: string;
+}
+
+dotenv.config();
 const config = convict({
+  db: {
+    type: {
+      doc: 'Database engine type',
+      format: [
+        DatabaseEngine.Mysql,
+        DatabaseEngine.Postgres,
+        DatabaseEngine.MariaDb,
+      ],
+      default: DatabaseEngine.Postgres,
+      env: 'TYPEORM_CONNECTION',
+    },
+    host: {
+      doc: 'Database Hostname',
+      format: String,
+      default: 'localhost',
+      env: 'TYPEORM_HOST',
+    },
+    port: {
+      doc: 'Database Port',
+      format: 'port',
+      default: 5432,
+      env: 'TYPEORM_PORT',
+    },
+    username: {
+      doc: 'Database Username',
+      format: String,
+      default: undefined,
+      env: 'TYPEORM_USERNAME',
+    },
+    password: {
+      doc: 'Database Password',
+      format: String,
+      default: undefined,
+      env: 'TYPEORM_PASSWORD',
+      sensitive: true,
+    },
+    databaseName: {
+      doc: 'Name of the database on the db host',
+      format: String,
+      default: 'kids-timer',
+      env: 'TYPEORM_DATABASE',
+    },
+    enableLogging: {
+      doc: 'Flag to enable database logging.',
+      format: Boolean,
+      default: true,
+      env: 'TYPEORM_LOGGING',
+    },
+    enableSync: {
+      doc: 'Flag to enable automatic schema syncing from entities.',
+      format: Boolean,
+      default: false,
+      env: 'TYPEORM_SYNCHRONIZE',
+    },
+  },
+  logging: {
+    filename: {
+      doc: 'Log file path',
+      format: '*',
+      default: 'server.log',
+      env: 'LOGGING_FILEPATH',
+    },
+    level: {
+      doc: 'Minimum logging level to include in the log file',
+      format: [LoggingLevel.Debug, LoggingLevel.Info, LoggingLevel.Warn, LoggingLevel.Error],
+      default: LoggingLevel.Info,
+      env: 'LOGGING_LEVEL',
+    },
+  },
   server: {
     env: {
       doc: 'The server environment',
@@ -52,68 +148,23 @@ const config = convict({
       env: 'SERVER_IP',
     },
   },
-  logging: {
-    filename: {
-      doc: 'Log file path',
-      format: '*',
-      default: 'server.log',
-    },
-    level: {
-      doc: 'Minimum logging level to include in the log file',
-      format: [LoggingLevel.Debug, LoggingLevel.Info, LoggingLevel.Warn, LoggingLevel.Error],
-      default: LoggingLevel.Info,
-    },
-  },
-  db: {
-    type: {
-      doc: 'Database engine type',
-      format: [
-        DatabaseEngine.Mysql,
-        DatabaseEngine.Postgres,
-        DatabaseEngine.MariaDb,
-      ],
-      // format: '*',
-      default: DatabaseEngine.Postgres,
-    },
-    host: {
-      doc: 'Database Hostname',
-      format: String,
-      default: 'localhost',
-      env: 'DB_HOST',
-    },
-    port: {
-      doc: 'Database Port',
-      format: 'port',
-      default: 5432,
-      env: 'DB_PORT',
-    },
-    username: {
-      doc: 'Database Username',
-      format: String,
-      default: undefined,
-      env: 'DB_USER',
-    },
-    password: {
-      doc: 'Database Password',
-      format: String,
-      default: undefined,
-      env: 'DB_PASS',
-      sensitive: true,
-    },
-    databaseName: {
-      doc: 'Name of the database on the db host',
-      format: String,
-      default: 'kids-timer',
-      env: 'DB_NAME',
-    },
-    enableLogging: {
-      doc: 'Flag to enable database logging.',
-      format: Boolean,
-      default: true,
-    },
-  },
 });
-
 config.validate({ allowed: 'strict' });
 
-export default config;
+const getDatabaseConfig = () => config.get(ConfigSection.Database);
+const getLoggingConfig = () => config.get(ConfigSection.Logging);
+const getServerConfig = () => config.get(ConfigSection.Server);
+
+export {
+  DatabaseEngine,
+  LoggingLevel,
+  ServerEnvironment,
+
+  DatabaseConfig,
+  LoggingConfig,
+  ServerConfig,
+
+  getDatabaseConfig,
+  getLoggingConfig,
+  getServerConfig,
+};
