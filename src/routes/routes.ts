@@ -5,7 +5,7 @@ import { UsersController } from './../controllers/users';
 import * as express from 'express';
 
 const models: TsoaRoute.Models = {
-  "User": {
+  "IUser": {
     "properties": {
       "id": { "dataType": "double", "required": true },
       "email": { "dataType": "string", "required": true },
@@ -13,7 +13,7 @@ const models: TsoaRoute.Models = {
       "lastName": { "dataType": "string", "required": true },
     },
   },
-  "UserCreationRequest": {
+  "CreateUserRequest": {
     "properties": {
       "firstName": { "dataType": "string", "required": true },
       "lastName": { "dataType": "string", "required": true },
@@ -24,6 +24,27 @@ const models: TsoaRoute.Models = {
 const validationService = new ValidationService(models);
 
 export function RegisterRoutes(app: express.Express) {
+  app.get('/v1/Users',
+    function(request: any, response: any, next: any) {
+      const args = {
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller = iocContainer.get<UsersController>(UsersController);
+      if (typeof controller['setStatus'] === 'function') {
+        (<any>controller).setStatus(undefined);
+      }
+
+
+      const promise = controller.getUsers.apply(controller, validatedArgs as any);
+      promiseHandler(controller, promise, response, next);
+    });
   app.get('/v1/Users/:id',
     function(request: any, response: any, next: any) {
       const args = {
@@ -50,7 +71,7 @@ export function RegisterRoutes(app: express.Express) {
   app.post('/v1/Users',
     function(request: any, response: any, next: any) {
       const args = {
-        requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "UserCreationRequest" },
+        requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "CreateUserRequest" },
       };
 
       let validatedArgs: any[] = [];

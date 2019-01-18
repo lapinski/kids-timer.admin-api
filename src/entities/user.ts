@@ -1,18 +1,24 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { User as IUser } from '../models/user';
+
+export interface IUser {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+}
 
 @Entity()
 export class User implements IUser {
 
   @PrimaryGeneratedColumn()
-    id: number;
+  id: number;
 
   @Column()
-    firstName: string;
+  firstName: string;
 
   @Column()
-    lastName: string;
+  lastName: string;
 
   @Column()
-    email: string;
+  email: string;
 }
