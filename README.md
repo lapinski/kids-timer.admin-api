@@ -1,5 +1,6 @@
 # Kids Timer - Admin API
-A rust api to handle requests for time, and record time spent.
+[![CircleCI](https://circleci.com/gh/lapinski/kids-timer.admin-api.svg?style=svg)](https://circleci.com/gh/lapinski/kids-timer.admin-api)
+An api to handle requests for time, and record time spent.
 
 ## Getting Started
 1. Clone this Repo
@@ -9,7 +10,7 @@ A rust api to handle requests for time, and record time spent.
 2. Copy ```.env.sample``` to ```.env``` and update values
 3. Install Dependencies
     ```sh
-    yarn install
+    npm install
     ```
 4. Start Database (see below for details)
     ```sh
@@ -17,7 +18,7 @@ A rust api to handle requests for time, and record time spent.
     ```
 5. Run Start Task
     ```sh
-    yarn start
+    npm start
     ```
 
 ## Running Locally
