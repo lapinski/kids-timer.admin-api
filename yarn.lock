@@ -88,7 +88,7 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
-"@types/swagger-schema-official@^2.0.13":
+"@types/swagger-schema-official@^2.0.14":
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/@types/swagger-schema-official/-/swagger-schema-official-2.0.14.tgz#04c129c9733312bc50a21db8bc4c27a41750db81"
 
@@ -131,6 +131,10 @@ ansi-styles@^3.2.1:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   dependencies:
     color-convert "^1.9.0"
+
+app-root-path@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/app-root-path/-/app-root-path-2.1.0.tgz#98bf6599327ecea199309866e8140368fd2e646a"
 
 argparse@^1.0.7:
   version "1.0.10"
@@ -474,7 +478,16 @@ fast-safe-stringify@^2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz#04b26106cc56681f51a044cfc0d76cf0008ac2c2"
 
-fastify-plugin@^1.2.0:
+fastify-oas@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/fastify-oas/-/fastify-oas-1.2.0.tgz#19f61bf83f1c80450f7b24b26054c3ed96ea0b05"
+  dependencies:
+    app-root-path "^2.1.0"
+    fastify-plugin "^1.4.0"
+    fastify-static "^1.0.0"
+    js-yaml "^3.12.1"
+
+fastify-plugin@^1.2.0, fastify-plugin@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-1.4.0.tgz#9f63ffc304a2f34e890773e78d2ba6908536e5b2"
   dependencies:
@@ -488,15 +501,6 @@ fastify-static@^1.0.0:
     glob "^7.1.3"
     readable-stream "^3.0.2"
     send "^0.16.0"
-
-fastify-swagger@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fastify-swagger/-/fastify-swagger-1.0.0.tgz#256dbf8b8c43c32f4ff49d7fc3fa3d891e76e73d"
-  dependencies:
-    "@types/swagger-schema-official" "^2.0.13"
-    fastify-plugin "^1.2.0"
-    fastify-static "^1.0.0"
-    js-yaml "^3.12.0"
 
 fastify@^1.13.4:
   version "1.13.4"
@@ -641,7 +645,7 @@ js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@^3.12.0:
+js-yaml@^3.12.1:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.1.tgz#295c8632a18a23e054cf5c9d3cecafe678167600"
   dependencies:
@@ -770,6 +774,10 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
 one-time@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/one-time/-/one-time-0.0.4.tgz#f8cdf77884826fe4dff93e3a9cc37b1e4480742e"
+
+openapi3-ts@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/openapi3-ts/-/openapi3-ts-1.1.0.tgz#6dc2c5e057dda74a9b299eeb61bf1f7305a1f0d3"
 
 parseurl@~1.3.2:
   version "1.3.2"
@@ -1003,6 +1011,10 @@ supports-color@^5.3.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   dependencies:
     has-flag "^3.0.0"
+
+swagger-schema-official@^2.0.0-bab6bed:
+  version "2.0.0-bab6bed"
+  resolved "https://registry.yarnpkg.com/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz#70070468d6d2977ca5237b2e519ca7d06a2ea3fd"
 
 text-hex@1.0.x:
   version "1.0.0"
