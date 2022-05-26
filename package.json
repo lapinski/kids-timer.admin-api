@@ -12,7 +12,7 @@
     "lint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
-    "convict": "^4.4.1",
+    "convict": "^6.2.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "fastify": "^1.13.4",
